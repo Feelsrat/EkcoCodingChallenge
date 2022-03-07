@@ -15,10 +15,10 @@ is_on = True
 
 while is_on:
     try:
-        a = input("Input the name of a city: ").upper()
+        a = input("Input the name of a city or hit enter to quit: ").upper()
 
         if a == "":
-            raise Exception("No city selected!")
+            quit()
 
         location.setlocation(a)  # https://geocode.xyz/{locationname}?json=1
         print(a + " is located at: " + location.getlatitude() + " " + location.getlongitude())
