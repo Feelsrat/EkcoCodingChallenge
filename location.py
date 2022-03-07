@@ -28,10 +28,10 @@ class Location():
                 raise Exception("Error, please try again")
 
         elif response.status_code < 300:
-            self.longitude = responseObj['longt']
-            self.latitude = responseObj['latt']
+            self.setlongitude(responseObj['longt'])
+            self.setlatitude(responseObj['latt'])
 
-            #print("Successfully grabbed long & lat")
+            # print("Successfully grabbed long & lat")
 
         else:
             print(f"Failed API call: {response.status_code} \nTry again")
@@ -51,3 +51,9 @@ class Location():
 
     def getlatitude(self):
         return self.latitude
+
+    def setlongitude(self, longitude):
+        self.longitude = longitude
+
+    def setlatitude(self, latitude):
+        self.latitude = latitude
