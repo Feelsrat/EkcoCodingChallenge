@@ -2,11 +2,11 @@ from location import Location
 
 
 def displayWeather(fcast):
-    for x, y in zip(fcast['time'], fcast['temperature_2m']):  # fpr loop to print display time/temperature
+    for x, y in zip(fcast['time'], fcast['temperature_2m']):  # for loop printing time/temperature
         datetime = str(x)
         temp = str(y)
 
-        print("Time: " + datetime.replace("T", " ") + " Temp: " + temp + "°C")
+        print("Date: " + datetime.replace("T", " Time: ") + " Temp: " + temp + "°C")
 
 
 location = Location()
