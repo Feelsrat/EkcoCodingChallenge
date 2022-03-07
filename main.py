@@ -28,6 +28,5 @@ while is_on:
 
         displayWeather(forecast)
 
-
     except Exception as e:
         print(e)

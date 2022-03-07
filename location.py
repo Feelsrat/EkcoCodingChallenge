@@ -1,7 +1,7 @@
 import requests
 
 
-class Location():
+class Location:
     def __init__(self):
         self.latitude = None
         self.longitude = None
@@ -16,22 +16,23 @@ class Location():
         response = requests.get(geocodeapi)  # Blocking request, will wait for response
         responseObj = response.json()
 
-        if "error" in responseObj:
+        if "error" in responseObj:  # catch errors when the API report status = 200
             # print(responseObj)
             if responseObj['error']['code'] == '006':
-                raise Exception("API Request Throttled, please wait some time and try again")
+                raise Exception(f"Error {responseObj['error']['code']}: API Request Throttled, please wait some time "
+                                f"and try again") #  API throttling issue
 
             elif responseObj['error']['code'] == '018':
-                raise Exception("Location not found")
+                raise Exception(f"Error {responseObj['error']['code']}: Location not found") #  Exception raised if location is invalid
 
             else:
-                raise Exception("Error, please try again")
+                raise Exception("Error, please try again")  # Generic exception as a precaution
 
         elif response.status_code < 300:
-            self.longitude = responseObj['longt']
-            self.latitude = responseObj['latt']
+            self.setlongitude(responseObj['longt'])
+            self.setlatitude(responseObj['latt'])
 
-            #print("Successfully grabbed long & lat")
+            # print("Successfully grabbed long & lat")
 
         else:
             print(f"Failed API call: {response.status_code} \nTry again")
@@ -51,3 +52,9 @@ class Location():
 
     def getlatitude(self):
         return self.latitude
+
+    def setlongitude(self, longitude):
+        self.longitude = longitude
+
+    def setlatitude(self, latitude):
+        self.latitude = latitude
