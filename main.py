@@ -15,7 +15,8 @@ is_on = True
 
 while is_on:
     try:
-        a = input("Input the name of a city or hit enter to quit: ").upper()
+        a = input("This program will display hourly temperature data for a selected location for a range of 7 "
+                  "days.\nInput the name of a city or hit enter to quit: ").upper()
 
         if a == "":
             quit()
