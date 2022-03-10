@@ -19,7 +19,6 @@ class Location:
         if "error" in responseObj:  # catch errors when the API report status = 200
             self.testerrorin200(responseObj)
 
-
         elif response.status_code < 300:
             self.setlongitude(responseObj['longt'])
             self.setlatitude(responseObj['latt'])
