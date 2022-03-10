@@ -13,10 +13,11 @@ location = Location()
 
 is_on = True
 
+print("This program will display hourly temperature data for a selected location for a range of 7 days.")
+
 while is_on:
     try:
-        a = input("This program will display hourly temperature data for a selected location for a range of 7 "
-                  "days.\nInput the name of a city or hit enter to quit: ").upper()
+        a = input("\nInput the name of a city or hit enter to quit: ").upper()
 
         if a == "":
             quit()
