@@ -24,7 +24,7 @@ class Location:
             self.setlatitude(responseObj['latt'])
 
         else:
-            print(f"Failed API call: {response.status_code} \nTry again")
+            print(f"Error {response.status_code}: \nTry again")
 
         return response.status_code
 
