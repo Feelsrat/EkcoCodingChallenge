@@ -1,34 +1,35 @@
 from location import Location
-
-
-def displayWeather(fcast):
-    for x, y in zip(fcast['time'], fcast['temperature_2m']):  # for loop printing time/temperature
-        datetime = str(x)
-        temp = str(y)
-
-        print("Date: " + datetime.replace("T", " Time: ") + " Temp: " + temp + "°C")
-
-
-location = Location()
-
-is_on = True
+from location import printdict as pd
 
 print("This program will display hourly temperature data for a selected location for a range of 7 days.")
 
-while is_on:
-    try:
-        a = input("\nInput the name of a city or hit enter to quit: ").upper()
 
-        if a == "":
-            quit()
+def inputStr():
+    return input("\nInput the name of a city or hit enter to quit: ").upper()
 
-        location.setlocation(a)  # https://geocode.xyz/{locationname}?json=1
-        print(a + " is located at: " + location.getlatitude() + " " + location.getlongitude())
 
-        forecast = location.getforecast()  # https://api.openmeteo.com/v1/forecast?latitude=[latt]&longitude=[
-        # long]&hourly=temperature_2m
+def main():
+    location = Location()
 
-        displayWeather(forecast)
+    is_on = True
 
-    except Exception as e:
-        print(e)
+    while is_on:
+        try:
+            a = inputStr()
+
+            if a == "":
+                quit()
+
+            location.geocodeapi(a)  # https://geocode.xyz/{locationname}?json=1
+            forecast = location.forecastapi()
+            location.getweather(forecast)
+
+            pd(location.forecastdict)
+
+        except Exception as e:
+            # print('type is:', e.__class__.__name__)
+            print(e)
+
+
+if __name__ == "__main__":
+    main()
